@@ -1,0 +1,18 @@
+
+  source:                              # Блок источника (откуда брать манифесты)
+    repoURL: https://github.com/ORG/REPO.git   # URL Git-репозитория
+    targetRevision: main               # Ветка / тег / commit SHA
+    path: k8s/demo                     # Путь внутри репозитория к манифестам
+
+  destination:                         # Куда деплоить
+    server: https://kubernetes.default.svc  # Адрес Kubernetes API (in-cluster)
+    namespace: demo                    # Namespace, куда будут применяться ресурсы
+
+  syncPolicy:                          # Политика синхронизации
+    automated:                         # Включение авто-синка
+      prune: true                      # Удалять ресурсы, которых больше нет в Git
+      selfHeal: true                   # Исправлять ручные изменения (drift)
+
+    syncOptions:                       # Дополнительные параметры синка
+      - CreateNamespace=true           # Автоматически создать namespace, если его нет
+      - ApplyOutOfSyncOnly=true        # Применять только изменённые ресурсы
