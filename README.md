@@ -1,4 +1,4 @@
-# GitOps AСrgoCD - Работа с ArgoCD
+# GitOps ArgoCD - Работа с ArgoCD
 
 ArgoCD – это декларативный инструмент GitOps для непрерывной доставки (Continuous Delivery) в 
 Kubernetes. Он автоматизирует развертывание приложений, синхронизируя состояние 
@@ -16,19 +16,22 @@ production) одновременно.
  ● Поддерживает популярные форматы конфигураций Kubernetes(Kubernetes-манифесты, 
 Helm) 
 
-Установка ArgoCD
- Создание namespace:
+# Установка ArgoCD
+
+1. Создание namespace:
  kubectl create namespace argocd
- Установка ArgoCD:
- kubectl apply -n argocd -f 
-https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
- Просмотр состояния Pod:
+2. Установка ArgoCD:
+ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+3. Просмотр состояния Pod:
  kubectl get pods -n argocd
- Проброс портов:
+4. Проброс портов:
  kubectl port-forward svc/argocd-server -n argocd 8080:443
- Получение пароля администратора:
+5. Получение пароля администратора:
  kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
 
 
 1. Создание репозитория в gitLabs.
+2. Добавление публичного ключа Preferences - GitLab.
+3. Клонируем репозиторий git clone ....
+4. 
